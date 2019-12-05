@@ -13,18 +13,17 @@ namespace JsonDemo.Controllers
             return View();
         }
 
-        public ActionResult About()
+        [HttpGet]
+        public JsonResult EmpDetails()
         {
-            ViewBag.Message = "Your application description page.";
+            Models.Employee empmod = new Models.Employee();
 
-            return View();
+            List<Models.Employee> ObjEmp = empmod.DeserializeJson();
+
+            //return list as Json
+            return Json(ObjEmp, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
-            return View();
-        }
     }
 }

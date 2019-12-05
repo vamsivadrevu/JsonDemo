@@ -1,0 +1,50 @@
+﻿<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.js"></script>
+<!-- Latest compiled and minified Locales -->
+
+
+
+
+<script>
+    $(document).ready(function () {
+        //Call EmpDetails jsonResult Method
+        $.getJSON("Home/EmpDetails",
+            function (json) {
+                var tr;
+                //Append each row to html table
+                for (var i = 0; i < json.length; i++) {
+                    tr = $('<tr/>');
+                    tr.append("<td>" + json[i].id + "</td>");
+                    tr.append("<td>" + json[i].first_name + "</td>");
+                    tr.append("<td>" + json[i].last_name + "</td>");
+                    tr.append("<td>" + json[i].email + "</td>");
+                    tr.append("<td>" + json[i].gender + "</td>");
+                    tr.append("<td>" + json[i].ip_address + "</td>");
+                    $('table').append(tr);
+                }
+            });
+    });
+</script>
+
+
+<table class="table table-bordered table-condensed table-hover table-striped"
+       data-toggle="table"
+       data-url="Home/EmpDetails"
+       data-pagination="true"
+       data-search="true">
+    <thead>
+        <tr>
+            <th data-field="id">ID</th>
+            <th data-field="first_name">First Name</th>
+            <th data-field="last_name">Last Name</th>
+            <th data-field="email">Email ID</th>
+            <th data-field="gender">Gender</th>
+            <th data-field="ip_address">IP Address</th>            
+        </tr>
+    </thead>
+</table>
